@@ -24,8 +24,6 @@ function createMarkup(arr) {
     .join('');
 }
 
-let instance = null;
-
 function handlerClick(evt) {
   evt.preventDefault();
   const targetImg = evt.target.closest('img');
@@ -33,7 +31,7 @@ function handlerClick(evt) {
     return;
   }
   
-  instance = basicLightbox.create(`<img src="${targetImg.dataset.source}">`, {
+  const instance = basicLightbox.create(`<img src="${targetImg.dataset.source}">`, {
     onShow: () => {
       document.addEventListener('keydown', closeOnEsc);
      },
@@ -42,10 +40,11 @@ function handlerClick(evt) {
     },
   });
   instance.show();
-}
 
-function closeOnEsc(evt) {
-  if (evt.key === 'Escape') {
+   function closeOnEsc(evt) {
+    if (evt.key === 'Escape') {
     instance.close();
+   }
   }
 }
+
